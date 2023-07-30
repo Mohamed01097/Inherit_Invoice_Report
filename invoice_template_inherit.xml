@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <template inherit_id="account.report_invoice_document" id="school_invoice_template_inherit">
+            <xpath expr="//table[@name='invoice_line_table']//thead//tr//th[2]" position="before">
+                <th class="text-right">Barcode</th>
+            </xpath>
+            <xpath expr="//div[@class='page']//table/tbody/t/tr/t/td" position="after">
+                <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', line.product_id.barcode, 100, 100)"/>
+                </td>
+            </xpath>
+        </template>
+    </data>
+</odoo>
